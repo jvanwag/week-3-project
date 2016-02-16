@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="devMtIn" lang="en">
 
 <head>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/styles3.css">
 	<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>DevMtin</title>
 </head>
 
-<body>
+<body  ng-controller="homeCtrl">
 	<div class="l-header">
-		<h1>Your Name</h1>
+		<h1>{{myProfile.name|| 'Your Name'}}</h1>
 	</div>
-  
-  <div class="wrapper">  
+
+  <div class="wrapper">
     <div>
       <h2>Profile</h2>
       <button class="l-btn l-btn-main">Editing :</button>
     </div>
 
-    <div>      
+    <div>
 
-      <input id="name" type="text" placeholder="Your Name">
+      <input id="name" type="text" placeholder="Your Name" ng-model="myProfile.name">
       <br />
 
       <input id="likes" type="text" placeholder="Likes">
@@ -39,17 +39,18 @@
     <h2>Friends</h2>
 
     <button class="l-btn l-btn-main">Go</button>
-    <input type="text" placeholder="Find Friends">    
-    <div class="friendList">
+    <input type="text" placeholder="Find Friends" ng-model="findFriend.name">
+    <select ng-model="sortReverse" ng-options='option.value as option.display for option in sortOptions'></select>
+    <div class="friendList" ng-repeat="friend in myProfile.friends | filter : findFriend.name | orderBy : name : sortReverse">
       <span class="closeBtn"></span>
-        My Friends
+      {{ friend.name}}
       <br />
       <div class="secondConnection friendList">
         My Second Connections
       </div>
     </div>
   </div>
-  
+
 	<div id="myModalMask">
 		<div id="myModal">
 			<div>
@@ -64,7 +65,9 @@
 			</div>
 		</div>
 	</div>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script type = 'text/javascript' src = './app.js'></script>
+<script src="./homeCtrl.js"></script>
 </body>
 
 </html>
