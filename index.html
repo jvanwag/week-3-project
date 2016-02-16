@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/styles3.css">
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>DevMtin</title>
+</head>
+
+<body>
+	<div class="l-header">
+		<h1>Your Name</h1>
+	</div>
+  
+  <div class="wrapper">  
+    <div>
+      <h2>Profile</h2>
+      <button class="l-btn l-btn-main">Editing :</button>
+    </div>
+
+    <div>      
+
+      <input id="name" type="text" placeholder="Your Name">
+      <br />
+
+      <input id="likes" type="text" placeholder="Likes">
+      <br />
+
+      <input id="favColor" type="text" placeholder="Favorite Color">
+      <br />
+      <button class="l-btn l-btn-success">Save</button>
+      <button class="l-btn l-btn-danger">Delete</button>
+    </div>
+  </div>
+
+  <div class="l-container">
+    <h2>Friends</h2>
+
+    <button class="l-btn l-btn-main">Go</button>
+    <input type="text" placeholder="Find Friends">    
+    <div class="friendList">
+      <span class="closeBtn"></span>
+        My Friends
+      <br />
+      <div class="secondConnection friendList">
+        My Second Connections
+      </div>
+    </div>
+  </div>
+  
+	<div id="myModalMask">
+		<div id="myModal">
+			<div>
+				<div class="modalTitle">
+				<span class="closeBtn"></span>
+					Add Friends
+				</div>
+					<br />
+				<div class="friendList">
+					<span class="friend"></span> Potential Friends
+				</div>
+			</div>
+		</div>
+	</div>
+  
+</body>
+
+</html>
