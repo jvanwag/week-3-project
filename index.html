@@ -9,41 +9,41 @@
 	<title>DevMtin</title>
 </head>
 
-<body  ng-controller="homeCtrl">
+<body ng-controller="homeCtrl">
 	<div class="l-header">
-		<h1>{{myProfile.name|| 'Your Name'}}</h1>
+		<h1>{{ myProfile.name || 'Your Name' }}</h1>
 	</div>
 
   <div class="wrapper">
     <div>
       <h2>Profile</h2>
-      <button class="l-btn l-btn-main">Editing :</button>
+      <button ng-click="editing = !editing" class="l-btn l-btn-main">Editing : {{ editing }}</button>
     </div>
 
     <div>
 
-      <input id="name" type="text" placeholder="Your Name" ng-model="myProfile.name">
+      <input ng-disabled="!editing" id="name" type="text" placeholder="Your Name" ng-model="myProfile.name">
       <br />
 
-      <input id="likes" type="text" placeholder="Likes">
+      <input ng-disabled="!editing" id="likes" type="text" placeholder="Likes" ng-model="myProfile.likes">
       <br />
 
-      <input id="favColor" type="text" placeholder="Favorite Color">
+      <input ng-disabled="!editing" id="favColor" type="text" placeholder="Favorite Color" ng-model="myProfile.favColor">
       <br />
-      <button class="l-btn l-btn-success">Save</button>
-      <button class="l-btn l-btn-danger">Delete</button>
+      <button ng-click="saveProfile(myProfile)" ng-disabled="!editing" class="l-btn l-btn-success">Save</button>
+      <button ng-click="deleteProfile()" class="l-btn l-btn-danger">Delete</button>
     </div>
   </div>
 
   <div class="l-container">
     <h2>Friends</h2>
 
-    <button class="l-btn l-btn-main">Go</button>
+    <button class="l-btn l-btn-main" ng-click='findFriends(findFriend.name)'>Go</button>
     <input type="text" placeholder="Find Friends" ng-model="findFriend.name">
-    <select ng-model="sortReverse" ng-options='option.value as option.display for option in sortOptions'></select>
+    <select ng-model="sortReverse" ng-options="option.value as option.display for option in sortOptions"></select>
     <div class="friendList" ng-repeat="friend in myProfile.friends | filter : findFriend.name | orderBy : name : sortReverse">
-      <span class="closeBtn"></span>
-      {{ friend.name}}
+      <span class="closeBtn" ng-click='removeFriend(friend._id)'></span>
+        {{ friend.name }}
       <br />
       <div class="secondConnection friendList">
         My Second Connections
@@ -60,14 +60,18 @@
 				</div>
 					<br />
 				<div class="friendList">
-					<span class="friend"></span> Potential Friends
+					<span class="friend" ng-repeat="friend in potentialFriends">
+            <button ng-click="addFriend(friend._id)">Add:</button>{{friend.name}}<br/>
+          </span> Potential Friends
 				</div>
 			</div>
 		</div>
 	</div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script type = 'text/javascript' src = './app.js'></script>
-<script src="./homeCtrl.js"></script>
+  <script src="./app.js"></script>
+  <script src="./homeCtrl.js"></script>
+	<script src="./profileService.js"></script>
 </body>
 
 </html>
